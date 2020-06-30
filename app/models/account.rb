@@ -16,4 +16,20 @@ class Account < ApplicationRecord
         end
     end
 
+    def balance_update_on_delete(transaction)
+        if transaction.exchange == 'deposit'
+            if self.balance >= transaction.amount
+                self.balance = self.balance - transaction.amount
+                self.save
+            else
+                return 'Insufficient Funds.'
+            end
+        elsif transaction.exchange == 'withdraw'
+            self.balance = self.balance + transaction.amount
+            self.save
+        end
+    end
+end
+
+
 end
