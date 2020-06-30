@@ -10,5 +10,16 @@ before_action :set_account
     @transaction = Transaction.find(params[:id])
     render json: @transaction
   end
-  
+
+  def create
+    @transaction = @account.transaction.new(transaction_params)
+    @transaction.date = Datetime.now
+    if @account.balance_update(@transactions != 'Insufficient Funds.')
+        @transaction.save
+        render json: @account
+    else
+        render json: {error: 'Insufficient Funds.'}
+    end
+end
+
 end
