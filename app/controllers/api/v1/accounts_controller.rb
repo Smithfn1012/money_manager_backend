@@ -18,4 +18,9 @@ class Api::V1::AccountsController < ApplicationController
         @accout = Account.find(params[:id])
         render json: @account
     end
+
+    def destroy
+        @account = Account.find(params[:id])
+        @account.destroy
+    end
 end
