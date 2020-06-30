@@ -30,4 +30,10 @@ class Api::V1::AccountsController < ApplicationController
         @account.save
         render json: @account
     end
+
+    private
+
+    def account_params
+        params.require(:account).permit(:name, :balance)
+    end
 end
