@@ -34,4 +34,13 @@ def destroy
     end
 end
 
+private
+
+  def set_account
+    @account = Account.find(params[:account_id])
+  end
+
+  def transaction_params
+    params.require(:transaction).permit(:amount, :account_id, :exchange, :date, :description)
+  end
 end
