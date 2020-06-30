@@ -13,4 +13,9 @@ class Api::V1::AccountsController < ApplicationController
             render json: {error: 'Error creating account'}
         end
     end
+
+    def show
+        @accout = Account.find(params[:id])
+        render json: @account
+    end
 end
