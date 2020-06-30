@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_181559) do
   create_table "transactions", force: :cascade do |t|
     t.integer "account_id"
     t.float "amount"
-    t.string "account_type"
+    t.string "exchange"
     t.datetime "date"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
